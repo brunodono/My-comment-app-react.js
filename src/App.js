@@ -18,22 +18,79 @@ class App extends React.Component {
       message:"Relax",
       date:new Date(),
       },
-
-    ]
+    ],
+    form:{
+      name:'',
+      email:'',
+      message:''
+    }
   };
 
-  addComment= () => {
-    const newComment = {
-      name:"Mona Lisa",
-      email:"monalisadolouvre@hotmail.com",
-      message:"Tentaram me jogar torta",
-      date:new Date(),
-    };
+  addComment= (event) => {
+    event.preventDefault();
+
+  //  console.log(this.state.form);
+
+    const newComment = {...this.state.form, date:new Date()};
+
+   // const newComment = {
+   //   name:"Mona Lisa",
+   //   email:"monalisadolouvre@hotmail.com",
+   //   message:"Tentaram me jogar torta",
+   //   date:new Date(),
+   // };
+
+
 
     this.setState({
-      comments: [...this.state.comments, newComment]
+      comments: [...this.state.comments, newComment],
+      form: {
+        name:"",
+        email:"",
+        message:""
+      }
+
     });
     
+  };
+
+ /* onNameChanged = (event) => {
+    this.setState({
+      form:{
+        ...this.state.form,
+        name: event.target.value,
+      }
+    });
+  };
+
+  onEmailChanged = (event) => {
+    this.setState({
+      form:{
+        ...this.state.form,
+        email: event.target.value,
+      },
+    });
+  };
+
+  onMessageChanged = (event) => {
+    this.setState({
+      form:{
+        ...this.state.form,
+        message: event.target.value,
+      },
+    });
+  };
+*/
+
+  onFieldChanged = (event) => {
+
+    const newCommentForm = this.state.form;
+    newCommentForm[event.target.name] = event.target.value;
+
+    this.setState({
+      form:newCommentForm
+    })
+
   };
 
   render() {
@@ -51,7 +108,47 @@ class App extends React.Component {
         )
       })}
 
-      <button onClick={this.addComment}>Add comment</button>
+      <form onSubmit={this.addComment}>
+
+        <h2>Add a comment</h2>
+
+        <div>
+          <input 
+          onChange={this.onFieldChanged}
+          value={this.state.form.name}
+          type="text" 
+          name="name" 
+          placeholder="Your name"
+          required="required"
+          />
+        </div>
+
+        <div>
+          <input 
+          onChange={this.onFieldChanged}
+          value={this.state.form.email}
+          type="email"
+          name="email"
+          placeholder="example@email.com"
+          required="required"
+          />
+        </div>
+
+        <div>
+          <textarea
+          onChange={this.onFieldChanged}
+          value={this.state.form.message}
+          name="message"
+          rows="4"
+          placeholder="Message"
+          required="required" />
+          </div>
+
+          <button type='Submit'>Add comment</button>
+
+      </form>
+
+      
 
     </div>
     );
