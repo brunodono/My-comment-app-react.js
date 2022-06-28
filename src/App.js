@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import Comment from './components/Comment/index';
-import CommentForm from './components/CommentForm/index'
+import CommentForm from './components/CommentForm/index';
+import Swal from "sweetalert2";
 
 class App extends React.Component {
 
@@ -41,8 +42,6 @@ class App extends React.Component {
    //   date:new Date(),
    // };
 
-
-
     this.setState({
       comments: [...this.state.comments, newComment],
       form: {
@@ -50,8 +49,9 @@ class App extends React.Component {
         email:"",
         message:""
       }
-
     });
+
+    Swal.fire('Your comment has been added', '', 'success')
     
   };
 
@@ -94,15 +94,33 @@ class App extends React.Component {
 
   };
 
+  deleteCommentAlert = (comment) => {
+
+    Swal.fire({
+      title: 'Are you sure you want to delete this comment?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes, I am!',
+      denyButtonText: `No, I changed my mind.`,
+      icon:'question',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.deleteComment(comment);
+        Swal.fire('The comment has been deleted.', '', 'success');
+      } else if (result.isDenied) {
+        Swal.fire('No problem, nothing has been deleted.', '', 'info')
+      }
+    });
+  };
+
   deleteComment = (comment) => {
     const filteredList = this.state.comments.filter((commentFilter)=>{
       return comment !== commentFilter;
     });
+
     this.setState({
       comments:filteredList,
-    })
-    console.log(filteredList);
-    
+    });
   };
 
   render() {
@@ -118,7 +136,7 @@ class App extends React.Component {
         message = {comment.message}
         date ={comment.date}
         onDeleteComment={()=>
-          {this.deleteComment(comment);
+          {this.deleteCommentAlert(comment);
           }}
         />
         )

@@ -1,5 +1,6 @@
 import "./style.css";
 import ProfileImg from "./programmer.png";
+import { formatRelative } from "date-fns";
 
 const Comment = (props) => {
 
@@ -17,7 +18,7 @@ const Comment = (props) => {
                 <h2 className="name">{name}</h2>
                 <p className="email">{email}</p>
                 <p className="message">{message}</p>
-                <p className="date">{date.toString()}</p>
+                <p className="date">{formatRelative(date, new Date())}</p>
                 <button className="delete" onClick={onDeleteComment}>&times;</button>
             </div>
             
