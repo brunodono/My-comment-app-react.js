@@ -1,4 +1,4 @@
-import "./Comment.css";
+import "./style.css";
 import ProfileImg from "./programmer.png";
 
 const Comment = (props) => {
