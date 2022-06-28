@@ -93,17 +93,32 @@ class App extends React.Component {
 
   };
 
+  deleteComment = (comment) => {
+    const filteredList = this.state.comments.filter((commentFilter)=>{
+      return comment !== commentFilter;
+    });
+    this.setState({
+      comments:filteredList,
+    })
+    console.log(filteredList);
+    
+  };
+
   render() {
     return (
     <div className="App">
       <h1>My comments app</h1>
       {this.state.comments.map((comment, index) => {
-        return (<Comment 
+        return (
+        <Comment 
         key = {index}
         name = {comment.name}
         email= {comment.email}
         message = {comment.message}
         date ={comment.date}
+        onDeleteComment={()=>
+          {this.deleteComment(comment);
+          }}
         />
         )
       })}
