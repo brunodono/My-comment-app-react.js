@@ -11,13 +11,13 @@ class App extends React.Component {
       {
       name :"Bruno Bignardi",
       email:"bruno_bignard@hotmail.com",
-      message :"Aparentemente ta dando errado",
+      message :"Hi, how are you? That's an example of a comment. I hope you enjoy it. Thanks.",
       date :new Date(),
       },
       {
-      name:"Beatriz Perez",
-      email:"bia_perz@hotmail.com",
-      message:"Relax",
+      name:"Mona Lisa",
+      email:"gioconda@email.com",
+      message:"The Mona Lisa is one of the most valuable paintings in the world. It holds the Guinness World Record for the highest known painting insurance valuation in history at US$100 million in 1962[12] (equivalent to $870 million in 2021)",
       date:new Date(),
       },
     ],
