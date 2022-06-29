@@ -2,6 +2,20 @@
 
 This project was created using ReactJs
 
+## Some application screenshots
+
+![](resources/screenshots/print1.png)
+
+#
+
+![](resources/screenshots/print2.png)
+
+#
+
+![](resources/screenshots/print3.png)
+
+#
+
 ## Available Scripts
 
 In the project directory, you can run:
